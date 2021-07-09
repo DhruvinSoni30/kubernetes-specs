@@ -1,7 +1,7 @@
-apiVersion: v1
-kind: ReplicationController
+apiVersion: apps/v1
+kind: ReplicaSet
 metdata:
-  name: myapp-rc
+  name: myapp-rs
   labels:
     app: my-app
     type: website
@@ -17,3 +17,7 @@ spec:
       - name: mywebsite-container
         image: dhruvin30/dhsoniweb
   replicas: 3
+  selector:
+    matchLabels:
+      app: my-app
+  
