@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ReplicationController
+metdata:
+  name: myapp-rc
+  labels:
+    app: my app
+    type: website
+spec:
+  template:
+    metadata:
+      name: mywebsite-pod
+      labels:
+        app: mywebsite
+        type: static
+    spec:
+      containers:
+      - name: mywebsite-container
+        image: dhruvin30/dhsoniweb
+  replicas: 3
+  
