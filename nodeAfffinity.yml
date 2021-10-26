@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-Pod
+spec:
+  containers:
+  - name: nginx-cotainer
+    image: nginx
+  
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoreDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: size
+            operator: In
+            values:
+            - Large
+            - Medium
+
+   affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoreDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: size
+            operator: NotIn
+            values:
+            - Large
+            - Medium
+
+   affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoreDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: size
+            operator: Exists
+            
+            
