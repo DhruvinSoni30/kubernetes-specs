@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: app-Secret
+spec:
+  containers:
+  - image: nginx
+    name: nginx-container
+    volumeMounts:
+    - mountPath: /opt
+      name: data-volume
+  
+  volumes:
+  - name: data-volume
+    hostPath:
+      path: /data
+      type: Directory
