@@ -13,6 +13,11 @@ spec:
     - podSelector:
         matchLabels:
           name: api-pod
+      namespaceSelector:
+        matcLabels:
+          name: prod
+    - ipBlock:
+          cide: 192.168.5.10/32
     ports:
     - protocol: TCP
       port: 3306
