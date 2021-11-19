@@ -1,0 +1,38 @@
+apiVersion: extension/v1beta1
+kind: Deployment
+metadata:
+  name: nginx-ingress-controller
+spec:
+  replicas: 1
+  selectore:
+    matchLabels:
+      name: nginx-ingress
+  template:
+    metdata:
+      labels:
+        name: nginx-ingress
+  spec:
+    containers:
+      - name: nginx-ingress-controller
+        image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.21.0
+    args:
+      - /nginx-ingress-controller
+
+---
+apiVersion: v1
+kind: Service
+metdata:
+  name: nginx-ingress
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: http
+  - port: 443
+    targetPort: 443
+    protocol: TCP
+    name: https
+  selector:
+    name: nginx-ingress

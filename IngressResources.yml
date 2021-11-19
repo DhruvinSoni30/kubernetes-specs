@@ -1,0 +1,46 @@
+apiVersion: extension/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-wear
+spec:
+  backend:
+    serviceName: web-service
+    servicePort: 80
+
+---
+apiVersion: extension/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-wear-watch
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /wear
+        backend:
+          serviceName: web-service
+          servicePort: 80
+      - path: /watch
+        backend:
+          serviceName: web-service
+          servicePort: 80
+
+---
+apiVersion: extension/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-wear-watch
+spec:
+  rules:
+  - host: wear.my-online-store.com
+    http:
+      paths:
+      - backend:
+          serviceName: web-service
+          servicePort: 80
+  - host: watch.my-online-store.com
+    http:
+      paths:
+      - backend:
+          serviceName: web-service
+          servicePort: 80
